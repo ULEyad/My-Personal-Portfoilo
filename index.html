@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eyad Elshafey — STEM Student, Full-Stack Developer &amp; Data Analyst</title>
+<meta name="description" content="Portfolio of Eyad Elshafey — STEM student in Port Said, Egypt working across full-stack development, data analysis, and embedded hardware, pursuing international research and scholarship opportunities.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ============ RESET & BASE ============ */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;scroll-padding-top:84px;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  button{font:inherit;background:none;border:none;cursor:pointer;color:inherit;}
+
+  /* ============ TOKENS ============ */
+  :root{
+    --paper:#F7F5F0;
+    --paper-deep:#EFEBE0;
+    --ink:#1B1D1F;
+    --ink-soft:#5B5E5F;
+    --pine:#2F4A3D;
+    --pine-deep:#1F3329;
+    --copper:#B5763B;
+    --copper-deep:#8F5C2B;
+    --line:#DAD5C6;
+    --paper-rgb:247,245,240;
+    --maxw:1160px;
+  }
+
+  /* ============ TYPE UTILITIES ============ */
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--copper-deep);
+    display:inline-block;
+    margin-bottom:14px;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    color:var(--ink);
+    line-height:1.08;
+    letter-spacing:-0.01em;
+  }
+  h2{font-size:clamp(28px,4vw,42px);}
+  h3{font-size:20px;font-weight:600;}
+  .lede{font-size:19px;color:var(--ink-soft);max-width:640px;}
+  em{font-style:italic;color:var(--pine);}
+
+  /* ============ LAYOUT ============ */
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+  section{padding:112px 0;border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .section-head{margin-bottom:56px;max-width:680px;}
+  .alt-bg{background:var(--paper-deep);}
+
+  /* ============ SKIP LINK ============ */
+  .skip-link{
+    position:absolute;left:-999px;top:0;background:var(--ink);color:var(--paper);
+    padding:12px 20px;z-index:200;font-family:'IBM Plex Mono',monospace;font-size:13px;
+  }
+  .skip-link:focus{left:16px;top:16px;}
+
+  /* ============ FOCUS ============ */
+  a:focus-visible,button:focus-visible{
+    outline:2px solid var(--pine);outline-offset:3px;border-radius:2px;
+  }
+
+  /* ============ HEADER ============ */
+  .site-header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(var(--paper-rgb),0.75);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease, background .3s ease;
+  }
+  .site-header.scrolled{border-bottom-color:var(--line);background:rgba(var(--paper-rgb),0.92);}
+  .header-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    height:76px;
+  }
+  .wordmark{
+    font-family:'Fraunces',serif;font-size:19px;font-weight:600;letter-spacing:-0.01em;
+  }
+  .site-nav{display:flex;gap:36px;}
+  .site-nav a{
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:0.06em;
+    text-transform:uppercase;color:var(--ink-soft);position:relative;padding:4px 0;
+    transition:color .2s ease;
+  }
+  .site-nav a::after{
+    content:'';position:absolute;left:0;bottom:0;width:100%;height:1px;
+    background:var(--pine);transform:scaleX(0);transform-origin:left;
+    transition:transform .25s ease;
+  }
+  .site-nav a:hover,.site-nav a.active{color:var(--ink);}
+  .site-nav a:hover::after,.site-nav a.active::after{transform:scaleX(1);}
+
+  .nav-toggle{display:none;flex-direction:column;gap:5px;padding:8px;}
+  .nav-toggle span{width:22px;height:1.5px;background:var(--ink);transition:transform .25s ease, opacity .25s ease;}
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+  .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
+  .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
+  /* ============ HERO ============ */
+  .hero{
+    padding:172px 0 96px;border-bottom:1px solid var(--line);
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:center;
+  }
+  .hero h1{font-size:clamp(42px,6vw,68px);margin-bottom:6px;}
+  .hero .role{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:400;
+    font-size:clamp(19px,2.4vw,24px);color:var(--pine);margin-bottom:22px;
+  }
+  .hero .lede{margin-bottom:34px;}
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:40px;}
+  .btn{
+    font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.04em;
+    padding:14px 26px;border-radius:2px;transition:all .2s ease;display:inline-block;
+  }
+  .btn-primary{background:var(--ink);color:var(--paper);}
+  .btn-primary:hover{background:var(--pine-deep);}
+  .btn-ghost{border:1px solid var(--ink);color:var(--ink);}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper);}
+  .quick-links{display:flex;gap:22px;}
+  .quick-links a{
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink-soft);
+    border-bottom:1px solid var(--line);padding-bottom:2px;transition:color .2s ease,border-color .2s ease;
+  }
+  .quick-links a:hover{color:var(--pine);border-color:var(--pine);}
+
+  .hero-graphic{width:100%;}
+  .trace-line{fill:none;stroke:var(--copper);stroke-width:1.4;stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.6s ease forwards;}
+  .trace-line.d2{animation-delay:.15s;}
+  .trace-line.d3{animation-delay:.3s;}
+  .trace-line.d4{animation-delay:.45s;}
+  .node-dot{fill:var(--paper);stroke:var(--pine);stroke-width:1.6;opacity:0;animation:pop .4s ease forwards;}
+  .node-dot.end{stroke:var(--copper);}
+  .node-label{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.05em;fill:var(--ink-soft);opacity:0;animation:fadeIn .5s ease forwards;}
+  .node-label.end{fill:var(--ink);font-weight:500;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @keyframes pop{to{opacity:1;}}
+  @keyframes fadeIn{to{opacity:1;}}
+
+  /* ============ REVEAL ============ */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.is-visible{opacity:1;transform:translateY(0);}
+  .reveal-stagger > *{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease;}
+  .reveal-stagger.is-visible > *{opacity:1;transform:translateY(0);}
+  .reveal-stagger.is-visible > *:nth-child(1){transition-delay:.05s;}
+  .reveal-stagger.is-visible > *:nth-child(2){transition-delay:.13s;}
+  .reveal-stagger.is-visible > *:nth-child(3){transition-delay:.21s;}
+  .reveal-stagger.is-visible > *:nth-child(4){transition-delay:.29s;}
+  .reveal-stagger.is-visible > *:nth-child(5){transition-delay:.37s;}
+
+  /* ============ PROFILE ============ */
+  .profile-grid{display:grid;grid-template-columns:200px 1fr;gap:56px;}
+  .profile-meta{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink-soft);}
+  .profile-meta div{margin-bottom:16px;}
+  .profile-meta strong{display:block;color:var(--ink);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px;}
+  .profile-body p{color:var(--ink-soft);font-size:17px;max-width:620px;margin-bottom:20px;}
+  .profile-body p:last-child{margin-bottom:0;}
+
+  /* ============ EXPERIENCE ============ */
+  .timeline{position:relative;max-width:760px;}
+  .t-item{
+    position:relative;padding-left:40px;padding-bottom:56px;border-left:1px solid var(--line);
+  }
+  .t-item:last-child{padding-bottom:0;}
+  .t-item::before{
+    content:'';position:absolute;left:-5px;top:4px;width:9px;height:9px;border-radius:50%;
+    background:var(--paper);border:1.6px solid var(--pine);
+  }
+  .t-date{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--copper-deep);letter-spacing:.04em;margin-bottom:8px;display:block;}
+  .t-org{font-size:21px;font-family:'Fraunces',serif;font-weight:600;margin-bottom:2px;}
+  .t-role{font-size:14.5px;color:var(--pine);font-weight:500;margin-bottom:14px;}
+  .t-item p{color:var(--ink-soft);font-size:15.5px;max-width:560px;}
+  .t-item ul{margin-top:10px;}
+  .t-item li{
+    color:var(--ink-soft);font-size:15.5px;padding-left:18px;position:relative;margin-bottom:8px;max-width:560px;
+  }
+  .t-item li::before{content:'—';position:absolute;left:0;color:var(--copper);}
+
+  /* ============ SKILLS ============ */
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);}
+  .skill-card{background:var(--paper);padding:32px 28px;}
+  .skill-card h3{font-size:14px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.06em;font-weight:500;color:var(--ink-soft);margin-bottom:18px;}
+  .skill-tags{display:flex;flex-wrap:wrap;gap:9px;}
+  .skill-tag{
+    font-size:14px;font-family:'Fraunces',serif;color:var(--ink);padding:5px 2px;border-bottom:1px solid var(--line);
+  }
+
+  /* ============ PROJECTS ============ */
+  .projects-intro{font-size:17px;color:var(--ink-soft);max-width:600px;margin-top:-32px;margin-bottom:56px;}
+  .project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;}
+  .project-card{
+    background:var(--paper);border:1px solid var(--line);padding:36px;
+    transition:border-color .25s ease, transform .25s ease;
+  }
+  .project-card:hover{border-color:var(--pine);transform:translateY(-3px);}
+  .badge{
+    display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--pine);border:1px solid var(--pine);padding:4px 10px;border-radius:20px;
+    margin-bottom:20px;
+  }
+  .project-card h3{font-size:22px;margin-bottom:4px;}
+  .project-meta{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--copper-deep);margin-bottom:16px;}
+  .project-card p{color:var(--ink-soft);font-size:15px;margin-bottom:22px;}
+  .project-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;}
+  .project-tags span{
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ink-soft);
+    background:var(--paper-deep);padding:5px 10px;
+  }
+  .project-link{
+    font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink);border-bottom:1px solid var(--ink);
+    padding-bottom:2px;transition:color .2s ease,border-color .2s ease;
+  }
+  .project-link:hover{color:var(--pine);border-color:var(--pine);}
+  .no-link-note{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);opacity:.65;}
+
+  /* ============ EDUCATION ============ */
+  .edu-list{max-width:760px;}
+  .edu-item{
+    display:grid;grid-template-columns:180px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--line);
+  }
+  .edu-item:last-child{border-bottom:none;}
+  .edu-date{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--copper-deep);padding-top:3px;}
+  .edu-name{font-size:18px;font-family:'Fraunces',serif;font-weight:600;margin-bottom:3px;}
+  .edu-detail{font-size:14.5px;color:var(--ink-soft);}
+
+  /* ============ CONTACT ============ */
+  .contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;}
+  .contact-links{display:flex;flex-direction:column;gap:18px;}
+  .contact-links a{
+    font-family:'Fraunces',serif;font-size:24px;font-weight:500;
+    border-bottom:1px solid transparent;transition:color .2s ease,border-color .2s ease;
+    width:fit-content;
+  }
+  .contact-links a:hover{color:var(--pine);border-color:var(--pine);}
+  .contact-sub{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);margin-top:4px;display:block;}
+
+  /* ============ FOOTER ============ */
+  footer{padding:36px 0;}
+  .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  footer p{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);}
+
+  /* ============ AI TWIN ============ */
+  .twin-intro{font-size:17px;color:var(--ink-soft);max-width:600px;margin-top:-32px;margin-bottom:44px;}
+  .twin-widget{max-width:640px;background:var(--paper);border:1px solid var(--line);transition:border-color .25s ease;}
+  .twin-widget:focus-within{border-color:var(--pine);}
+  .twin-chrome{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 24px;border-bottom:1px solid var(--line);}
+  .twin-path{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);letter-spacing:.02em;}
+  .twin-reset{color:var(--ink-soft);padding:4px;display:flex;transition:color .2s ease;}
+  .twin-reset:hover{color:var(--ink);}
+  .twin-log{height:380px;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:20px;}
+  .twin-msg{border-left:1px solid;padding-left:16px;animation:twinFadeIn .3s ease-out;}
+  .twin-msg-twin{border-color:var(--pine);}
+  .twin-msg-you{border-color:var(--copper);}
+  .twin-msg-label-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+  .twin-msg-label{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;}
+  .twin-msg-twin .twin-msg-label{color:var(--pine);}
+  .twin-msg-you .twin-msg-label{color:var(--copper-deep);}
+  .twin-msg-text{font-family:'IBM Plex Sans',sans-serif;font-size:15px;line-height:1.65;color:var(--ink);white-space:pre-wrap;}
+  .twin-copy-btn{color:var(--line);padding:2px;display:flex;transition:color .2s ease;}
+  .twin-copy-btn:hover{color:var(--ink-soft);}
+  .twin-chips{display:flex;flex-wrap:wrap;gap:9px;padding-left:16px;}
+  .twin-chip{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--pine);border:1px solid var(--pine);border-radius:20px;padding:7px 14px;transition:background .2s ease,color .2s ease;}
+  .twin-chip:hover{background:var(--pine);color:var(--paper);}
+  .twin-loading{display:flex;gap:5px;align-items:center;height:16px;}
+  .twin-bar{width:4px;height:12px;background:var(--pine);animation:twinPulse 1s ease-in-out infinite;}
+  .twin-bar-2{animation-delay:150ms;}
+  .twin-bar-3{animation-delay:300ms;}
+  .twin-error-row{display:flex;align-items:center;justify-content:space-between;gap:14px;border-left:1px solid var(--copper-deep);padding-left:16px;}
+  .twin-error-text{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--copper-deep);}
+  .twin-retry-btn{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--copper-deep);border-bottom:1px solid var(--copper-deep);flex-shrink:0;}
+  .twin-input-row{display:flex;align-items:center;gap:12px;padding:16px 24px;border-top:1px solid var(--line);}
+  .twin-cursor{font-family:'IBM Plex Mono',monospace;color:var(--pine);animation:twinBlink 1.1s step-end infinite;}
+  #twinInput{flex:1;font-family:'IBM Plex Sans',sans-serif;font-size:15px;color:var(--ink);background:none;border:none;outline:none;}
+  #twinInput::placeholder{color:var(--ink-soft);opacity:.6;}
+  #twinSend{color:var(--pine);padding:6px;display:flex;transition:opacity .2s ease;}
+  #twinSend:hover{opacity:.7;}
+  #twinSend:disabled{color:var(--line);cursor:not-allowed;}
+  @keyframes twinBlink{0%,45%{opacity:1;}50%,95%{opacity:0;}100%{opacity:1;}}
+  @keyframes twinFadeIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes twinPulse{0%,100%{opacity:.25;}50%{opacity:1;}}
+  @media (max-width:520px){.twin-log{height:320px;padding:18px;}}
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:860px){
+    section{padding:76px 0;}
+    .hero{padding:140px 0 64px;grid-template-columns:1fr;gap:52px;}
+    .hero-graphic{order:-1;max-width:320px;}
+    .profile-grid{grid-template-columns:1fr;gap:28px;}
+    .project-grid{grid-template-columns:1fr;}
+    .contact-inner{grid-template-columns:1fr;gap:32px;}
+    .site-nav{
+      position:absolute;top:76px;left:0;right:0;background:var(--paper);
+      flex-direction:column;gap:0;border-bottom:1px solid var(--line);
+      max-height:0;overflow:hidden;transition:max-height .3s ease;
+    }
+    .site-nav.open{max-height:340px;}
+    .site-nav a{padding:16px 32px;border-bottom:1px solid var(--line);width:100%;}
+    .nav-toggle{display:flex;}
+  }
+  @media (max-width:520px){
+    .container{padding:0 22px;}
+    .edu-item{grid-template-columns:1fr;gap:4px;}
+    .skills-grid{grid-template-columns:1fr 1fr;}
+  }
+
+  /* ============ REDUCED MOTION ============ */
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
+    .reveal,.reveal-stagger > *{opacity:1;transform:none;}
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a href="#" class="wordmark">Eyad Elshafey</a>
+    <nav class="site-nav" id="siteNav">
+      <a href="#profile">Profile</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#twin">AI Twin</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Toggle navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero container">
+    <div>
+      <span class="eyebrow">Port Said, Egypt · STEM Student</span>
+      <h1>Eyad Elshafey</h1>
+      <p class="role">Full-Stack Developer &amp; Data Analyst</p>
+      <p class="lede">I work across embedded hardware, full-stack software, and data — and I'm looking for a research program or scholarship that needs someone comfortable in all three.</p>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      </div>
+      <div class="quick-links">
+        <a href="mailto:elshafeyeyad5@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/eyad-elshafey-b45929428/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/ULEyad" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <svg class="hero-graphic" viewBox="0 0 460 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram showing code, data, hardware, and security converging toward research">
+      <path class="trace-line" pathLength="100" d="M50,40 H230 V160 H352" />
+      <path class="trace-line d2" pathLength="100" d="M50,120 H270 V160 H352" />
+      <path class="trace-line d3" pathLength="100" d="M50,200 H270 V160 H352" />
+      <path class="trace-line d4" pathLength="100" d="M50,280 H230 V160 H352" />
+
+      <circle class="node-dot" cx="50" cy="40" r="5" style="animation-delay:.5s"/>
+      <text class="node-label" x="38" y="24" text-anchor="start" style="animation-delay:.6s">CODE</text>
+
+      <circle class="node-dot" cx="50" cy="120" r="5" style="animation-delay:.65s"/>
+      <text class="node-label" x="38" y="104" text-anchor="start" style="animation-delay:.75s">DATA</text>
+
+      <circle class="node-dot" cx="50" cy="200" r="5" style="animation-delay:.8s"/>
+      <text class="node-label" x="38" y="224" text-anchor="start" style="animation-delay:.9s">HARDWARE</text>
+
+      <circle class="node-dot" cx="50" cy="280" r="5" style="animation-delay:.95s"/>
+      <text class="node-label" x="38" y="304" text-anchor="start" style="animation-delay:1.05s">SECURITY</text>
+
+      <circle class="node-dot end" cx="360" cy="160" r="8" style="animation-delay:1.2s"/>
+      <text class="node-label end" x="380" y="164" text-anchor="start" style="animation-delay:1.3s">RESEARCH</text>
+    </svg>
+  </section>
+
+  <!-- PROFILE -->
+  <section id="profile" class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Profile</span>
+      <h2>From circuits to research</h2>
+    </div>
+    <div class="profile-grid reveal">
+      <div class="profile-meta">
+        <div><strong>Based in</strong>Port Said, Egypt</div>
+        <div><strong>Currently</strong>Ismailia STEM High School</div>
+        <div><strong>Focus</strong>Full-stack, data, embedded systems</div>
+        <div><strong>Looking for</strong>International research &amp; scholarship programs</div>
+      </div>
+      <div class="profile-body">
+        <p>I'm a STEM student at Ismailia STEM High School, based in Port Said, Egypt. My work sits at the intersection of three layers most people keep separate: embedded hardware, full-stack software, and data.</p>
+        <p>On the hardware side, I design and program embedded systems with Arduino as part of ongoing STEM research. On the software side, I build full-stack applications — React on the front end, Express on the back — and use Python, Pandas, and NumPy to analyze the data those systems generate. Cybersecurity training through Egypt's National Telecommunications Institute shapes how I think about all of it: not just whether a system works, but whether it holds up.</p>
+        <p>I'm currently interning as a Front-End AI Engineer at FlyRank AI, and actively looking for international scholarship and research opportunities where that combination is an asset rather than something I have to choose between.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="alt-bg">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Experience</span>
+        <h2>Where I've been working</h2>
+      </div>
+      <div class="timeline reveal">
+        <div class="t-item">
+          <span class="t-date">Jul 2026 — Present</span>
+          <div class="t-org">FlyRank AI</div>
+          <div class="t-role">Front-End AI Engineer · Internship</div>
+          <p>Interning on the front-end engineering side of an AI-focused product team.</p>
+        </div>
+        <div class="t-item">
+          <span class="t-date">Sep 2025 — Present</span>
+          <div class="t-org">Ismailia STEM High School</div>
+          <div class="t-role">STEM Researcher &amp; Full-Stack Developer</div>
+          <ul>
+            <li>Build full-stack web applications using React, Express, JavaScript, HTML, and CSS.</li>
+            <li>Use Python, Pandas, and NumPy for data analysis, manipulation, and processing on research projects.</li>
+            <li>Design and program embedded hardware systems with Arduino for STEM research.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Skills</span>
+      <h2>What I work with</h2>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-card">
+        <h3>Full-Stack Development</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">React</span><span class="skill-tag">Express</span>
+          <span class="skill-tag">JavaScript</span><span class="skill-tag">HTML</span><span class="skill-tag">CSS</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Data Analysis</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span><span class="skill-tag">Pandas</span><span class="skill-tag">NumPy</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Embedded Hardware</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Arduino</span><span class="skill-tag">Embedded Systems</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Game Development</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Unity</span><span class="skill-tag">Procedural Generation</span><span class="skill-tag">Game State Management</span><span class="skill-tag">Endless-Runner Mechanics</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Security</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Cybersecurity Fundamentals</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Collaboration</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Teamwork</span><span class="skill-tag">Team Management</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="alt-bg">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Projects</span>
+        <h2>Backend systems from coursework</h2>
+      </div>
+      <p class="projects-intro reveal">Two complete backend systems I completed as part of structured JavaScript / Node.js backend coursework.</p>
+      <div class="project-grid reveal-stagger">
+        <div class="project-card">
+          <span class="badge">Coursework · Completed</span>
+          <h3>EventPulse — Event Management API</h3>
+          <div class="project-meta">JavaScript Backend Essentials — Capstone</div>
+          <p>A complete Node.js / Express / MongoDB backend for event management. Covers JWT authentication with role-based access, a filterable and paginated events API, registration and capacity management, real-time announcements over Socket.io, and automated tests with Jest and Supertest.</p>
+          <div class="project-tags">
+            <span>Express</span><span>MongoDB</span><span>JWT</span><span>Socket.io</span><span>Jest</span>
+          </div>
+          <a href="https://github.com/ULEyad/112010-EventPulse" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+        </div>
+        <div class="project-card">
+          <span class="badge">Coursework · Completed</span>
+          <h3>E-Commerce REST API</h3>
+          <div class="project-meta">Backend Development Coursework</div>
+          <p>A full-featured e-commerce backend built on MVC architecture: category and product CRUD with filtering and pagination, a session-based shopping cart with live price calculation, and a checkout flow with stock verification.</p>
+          <div class="project-tags">
+            <span>Express</span><span>MongoDB</span><span>Mongoose</span>
+          </div>
+          <a href="https://github.com/ULEyad/ecommerce-api" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI TWIN -->
+  <section id="twin" class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">AI Twin</span>
+      <h2>Talk to it directly</h2>
+    </div>
+    <p class="twin-intro reveal">This is a small language model wired to what's on this page — nothing more. Ask about the projects, the stack, or the research angle, and it answers the way I would, grounded only in what's written here.</p>
+    <div class="twin-widget reveal">
+      <div class="twin-chrome">
+        <span class="twin-path">ai-twin / eyad-elshafey</span>
+        <button class="twin-reset" id="twinReset" aria-label="Reset conversation">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><polyline points="3 4 3 9 8 9"/></svg>
+        </button>
+      </div>
+      <div class="twin-log" id="twinLog" role="log" aria-live="polite" aria-label="Conversation with Eyad's AI twin"></div>
+      <div class="twin-input-row">
+        <span class="twin-cursor" aria-hidden="true">▍</span>
+        <input type="text" id="twinInput" placeholder="Ask about the projects, the stack, or the research angle…" maxlength="600" aria-label="Message" />
+        <button id="twinSend" aria-label="Send message">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Education</span>
+      <h2>Academic background</h2>
+    </div>
+    <div class="edu-list reveal">
+      <div class="edu-item">
+        <span class="edu-date">Sep 2025 — Present</span>
+        <div>
+          <div class="edu-name">Ismailia STEM High School</div>
+          <div class="edu-detail">STEM Track</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <span class="edu-date">Aug 2026</span>
+        <div>
+          <div class="edu-name">National Telecommunication Institute (NTI)</div>
+          <div class="edu-detail">Cybersecurity Training</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <span class="edu-date">Completed</span>
+        <div>
+          <div class="edu-name">Web Development Certification</div>
+          <div class="edu-detail">Levels 1 – 3</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <span class="edu-date">Completed</span>
+        <div>
+          <div class="edu-name">Unity Game Development Certification</div>
+          <div class="edu-detail">Pipe Runner &amp; Box Sprint — procedural generation, game state management</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <span class="edu-date">Oct 2023 — Jun 2025</span>
+        <div>
+          <div class="edu-name">Port Said National Bank Official Language School</div>
+          <div class="edu-detail">Middle School Certificate, General Studies</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <span class="edu-date">Oct 2021 — Jun 2023</span>
+        <div>
+          <div class="edu-name">Port Said National Bank Official Language School</div>
+          <div class="edu-detail">Primary School Certificate, General Studies</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="alt-bg">
+    <div class="container contact-inner">
+      <div class="reveal">
+        <span class="eyebrow">Contact</span>
+        <h2>Let's connect</h2>
+        <p class="lede" style="margin-top:16px;">I'm actively looking for international scholarship and research opportunities. If you're reviewing applications, running a research program, or just want to talk about a project — reach out.</p>
+      </div>
+      <div class="contact-links reveal">
+        <a href="mailto:elshafeyeyad5@gmail.com">elshafeyeyad5@gmail.com<span class="contact-sub">Email</span></a>
+        <a href="https://www.linkedin.com/in/eyad-elshafey-b45929428/" target="_blank" rel="noopener">LinkedIn<span class="contact-sub">/in/eyad-elshafey-b45929428</span></a>
+        <a href="https://github.com/ULEyad" target="_blank" rel="noopener">GitHub<span class="contact-sub">@ULEyad</span></a>
+        <span style="margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink-soft);">Port Said, Egypt</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="container">
+  <div class="footer-inner">
+    <p>&copy; <span id="year"></span> Eyad Elshafey</p>
+    <p>Port Said, Egypt</p>
+  </div>
+</footer>
+
+<script>
+  // Header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 12);
+  }, { passive: true });
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const siteNav = document.getElementById('siteNav');
+  navToggle.addEventListener('click', () => {
+    const open = siteNav.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  siteNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      siteNav.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => io.observe(el));
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('main section[id]');
+  const navLinks = document.querySelectorAll('.site-nav a');
+  const navIo = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const link = document.querySelector(`.site-nav a[href="#${entry.target.id}"]`);
+      if (!link) return;
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4, rootMargin: '-84px 0px -50% 0px' });
+  sections.forEach(s => navIo.observe(s));
+
+  // Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // AI Twin
+  (function () {
+    var STARTER_PROMPTS = [
+      "What have you built?",
+      "What's your actual stack?",
+      "What are you looking for?"
+    ];
+
+    var INITIAL_MESSAGE = {
+      role: "assistant",
+      content: "Ask about the projects, the stack, or what I'm looking for next — I'll answer from what's on this page."
+    };
+
+    var ICONS = {
+      copy: '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>',
+      check: '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+    };
+
+    var messages = [INITIAL_MESSAGE];
+    var loading = false;
+    var apiError = null;
+    var copiedIndex = null;
+
+    var logEl = document.getElementById("twinLog");
+    var inputEl = document.getElementById("twinInput");
+    var sendBtn = document.getElementById("twinSend");
+    var resetBtn = document.getElementById("twinReset");
+
+    function renderTwin() {
+      logEl.innerHTML = "";
+
+      messages.forEach(function (m, i) {
+        var row = document.createElement("div");
+        row.className = "twin-msg " + (m.role === "assistant" ? "twin-msg-twin" : "twin-msg-you");
+
+        var labelRow = document.createElement("div");
+        labelRow.className = "twin-msg-label-row";
+
+        var label = document.createElement("div");
+        label.className = "twin-msg-label";
+        label.textContent = m.role === "assistant" ? "Eyad's twin" : "You";
+        labelRow.appendChild(label);
+
+        if (m.role === "assistant") {
+          var copyBtn = document.createElement("button");
+          copyBtn.type = "button";
+          copyBtn.className = "twin-copy-btn";
+          copyBtn.setAttribute("aria-label", copiedIndex === i ? "Copied" : "Copy response");
+          copyBtn.innerHTML = copiedIndex === i ? ICONS.check : ICONS.copy;
+          (function (idx, content) {
+            copyBtn.addEventListener("click", function () { copyMessage(idx, content); });
+          })(i, m.content);
+          labelRow.appendChild(copyBtn);
+        }
+
+        row.appendChild(labelRow);
+
+        var text = document.createElement("p");
+        text.className = "twin-msg-text";
+        text.textContent = m.content;
+        row.appendChild(text);
+
+        logEl.appendChild(row);
+      });
+
+      if (messages.length === 1 && !loading) {
+        var chipsWrap = document.createElement("div");
+        chipsWrap.className = "twin-chips";
+        STARTER_PROMPTS.forEach(function (p) {
+          var chip = document.createElement("button");
+          chip.type = "button";
+          chip.className = "twin-chip";
+          chip.textContent = p;
+          chip.addEventListener("click", function () { sendMessage(p); });
+          chipsWrap.appendChild(chip);
+        });
+        logEl.appendChild(chipsWrap);
+      }
+
+      if (loading) {
+        var loadingRow = document.createElement("div");
+        loadingRow.className = "twin-msg twin-msg-twin";
+        loadingRow.innerHTML =
+          '<div class="twin-msg-label-row"><div class="twin-msg-label">Eyad&#39;s twin</div></div>' +
+          '<div class="twin-loading"><span class="twin-bar twin-bar-1"></span><span class="twin-bar twin-bar-2"></span><span class="twin-bar twin-bar-3"></span></div>';
+        logEl.appendChild(loadingRow);
+      }
+
+      if (apiError) {
+        var errRow = document.createElement("div");
+        errRow.className = "twin-error-row";
+        var textEl = document.createElement("p");
+        textEl.className = "twin-error-text";
+        textEl.textContent = apiError.text;
+        var retryBtn = document.createElement("button");
+        retryBtn.type = "button";
+        retryBtn.className = "twin-retry-btn";
+        retryBtn.textContent = "Retry";
+        retryBtn.addEventListener("click", retry);
+        errRow.appendChild(textEl);
+        errRow.appendChild(retryBtn);
+        logEl.appendChild(errRow);
+      }
+
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    async function callApi(history) {
+      loading = true;
+      apiError = null;
+      renderTwin();
+
+      var controller = new AbortController();
+      var timeoutId = setTimeout(function () { controller.abort(); }, 30000);
+
+      try {
+        var response = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          signal: controller.signal,
+          body: JSON.stringify({ messages: history })
+        });
+        clearTimeout(timeoutId);
+
+        if (response.status === 429) {
+          apiError = { text: "Getting a lot of questions right now — give it a few seconds and try again.", retryHistory: history };
+          return;
+        }
+        if (!response.ok) {
+          apiError = { text: "Something glitched reaching the twin (error " + response.status + ").", retryHistory: history };
+          return;
+        }
+
+        var data = await response.json();
+        var reply = (data.content || [])
+          .map(function (block) { return block.type === "text" ? block.text : ""; })
+          .join("\n")
+          .trim();
+        messages = messages.concat([{ role: "assistant", content: reply || "Didn't catch that — mind trying again?" }]);
+      } catch (err) {
+        clearTimeout(timeoutId);
+        var timedOut = err && err.name === "AbortError";
+        apiError = {
+          text: timedOut ? "That took too long and timed out. Try again?" : "Couldn't reach the twin — check your connection and try again.",
+          retryHistory: history
+        };
+      } finally {
+        loading = false;
+        renderTwin();
+      }
+    }
+
+    function sendMessage(overrideText) {
+      var text = (overrideText !== undefined ? overrideText : inputEl.value).trim();
+      if (!text || loading) return;
+
+      messages = messages.concat([{ role: "user", content: text }]);
+      inputEl.value = "";
+      renderTwin();
+      callApi(messages);
+    }
+
+    function retry() {
+      if (apiError && apiError.retryHistory) callApi(apiError.retryHistory);
+    }
+
+    function copyMessage(i, content) {
+      if (!navigator.clipboard) return;
+      navigator.clipboard.writeText(content).then(function () {
+        copiedIndex = i;
+        renderTwin();
+        setTimeout(function () {
+          if (copiedIndex === i) {
+            copiedIndex = null;
+            renderTwin();
+          }
+        }, 1500);
+      }).catch(function () {});
+    }
+
+    function resetChat() {
+      messages = [INITIAL_MESSAGE];
+      apiError = null;
+      copiedIndex = null;
+      inputEl.value = "";
+      renderTwin();
+      inputEl.focus();
+    }
+
+    sendBtn.addEventListener("click", function () { sendMessage(); });
+    resetBtn.addEventListener("click", resetChat);
+    inputEl.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+
+    renderTwin();
+  })();
+</script>
+</body>
+</html>

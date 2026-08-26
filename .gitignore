@@ -1,0 +1,13 @@
+# Secrets - never commit these
+.env
+.env.local
+.env*.local
+
+# Vercel CLI local cache (created by `vercel dev` / `vercel link`)
+.vercel
+
+# In case you ever add dependencies
+node_modules
+
+.vercel
+.env*
